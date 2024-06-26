@@ -1,14 +1,14 @@
 src
 misc
 puppet
-src/*
-misc/*
-puppet/*
+node_modules
+target
 CHANGELOG.md
 demo.Dockerfile
 generate-material.js
 LICENSE-GPLv3.txt
 package.json
+package-lock.json
 pom.xml
 README_EXECUTABLE_WAR.txt
 README.md
