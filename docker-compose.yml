@@ -1,0 +1,39 @@
+services:
+  db:
+    image: mysql:5.7
+    container_name: db
+    hostname: db
+    environment:
+      MYSQL_ROOT_PASSWORD: 12345678
+      MYSQL_DATABASE: lavagna
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: 12345
+    volumes:
+      -  mysql:/var/lib/mysql
+    networks:
+      - backend-network
+
+
+  app:
+    build: .
+    container_name: app
+    hostname: app  
+    environment:
+      DB_DIALECT: MYSQL
+      DB_URL: "jdbc:mysql://db:3306/lavagna?useUnicode=true&characterEncoding=utf-8&autoReconnect=true&useSSL=false"
+      SPRING_PROFILE: dev
+      DB_USER: myuser
+      DB_PASS: 12345
+    
+    ports:
+      - "8080:8080"
+
+    networks:
+      - backend-network
+
+
+networks:
+  backend-network:
+
+volumes:
+  mysql:
